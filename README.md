@@ -17,12 +17,8 @@ $ npm install tencent-component-monitor --save
 
 并在 handler.js 文件里面，在所有引用的最前面引入 monitor
 
-```
+```bash
 require('tencent-component-monitor')
-const fs = require('fs')
-const path = require('path')
-const { createServer, proxy } = require('tencent-serverless-http')
-
 ```
 
 ## License
