@@ -1,6 +1,6 @@
 {
   "name": "tencent-component-monitor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Tencent component monitor",
   "main": "src/index.js",
   "scripts": {
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/serverless-tencent/tencent-component-toolkit.git"
+    "url": "git+https://github.com/serverless-tencent/tencent-component-monitor.git"
   },
   "keywords": [
     "template",
@@ -46,9 +46,9 @@
   "author": "Tencent Cloud Inc.",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/serverless-tencent/tencent-component-toolkit/issues"
+    "url": "https://github.com/serverless-tencent/tencent-component-monitor/issues"
   },
-  "homepage": "https://github.com/serverless-tencent/tencent-component-toolkit#readme",
+  "homepage": "https://github.com/serverless-tencent/tencent-component-monitor#readme",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",

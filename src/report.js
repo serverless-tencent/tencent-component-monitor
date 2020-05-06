@@ -17,6 +17,7 @@ function str2hex(str) {
 exports.reportHttp = async function(context, method, path, statusCode) {
   try {
     context = JSON.parse(decodeURIComponent(context))
+    // 自定级监控上报的指标名只支持【a-zA-Z0-9_-】，所以把path进行转义上报
     path = str2hex(path)
     const ServiceType = 'monitor'
     const {

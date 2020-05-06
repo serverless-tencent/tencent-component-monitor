@@ -8,7 +8,7 @@ module.exports = function initialize(agent, httpProxy) {
       context[REUQEST_START_KEY] = Date.now()
       const proxy = fn.apply(this, arguments)
       return new Promise(function(resolve) {
-        agent.on('responseFinish', function(ctx, method, path, responseCode) {
+        agent.once('responseFinish', function(ctx, method, path, responseCode) {
           if (ctx) {
             report.reportHttp(ctx, method, path, responseCode).then(
               function() {

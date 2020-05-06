@@ -18,7 +18,6 @@ module.exports = function initialize(agent, express) {
     return false
   }
 
-  // wrapExpress4(express)
   utils.wrapMethod(express.Router, 'route', function wrapRoute(fn) {
     if (!utils.isFunction(fn)) {
       return fn
@@ -26,9 +25,12 @@ module.exports = function initialize(agent, express) {
 
     return function wrappedRoute() {
       const sourceRoute = fn.apply(this, arguments)
-      // Express should create a new route and layer every time Router#route is
-      // called, but just to be on the safe side, make sure we haven't wrapped
-      // this already.
+      // Router每次添加一个route，都会把route包装到layer中，并且将layer添加到的stack中
+      // 当客户端发送一个http请求后，会先进入express实例对象对应的router.handle函数中，
+      // router.handle函数会通过next()遍历stack中的每一个layer进行match，
+      // 如果match返回true，则获取layer.route，执行route.dispatch函数，
+      // route.dispatch同样是通过next()遍历stack中的每一个layer，
+      // 然后执行layer.handle_request，也就是调用中间件函数。直到所有的中间件函数被执行完毕，整个路由处理结束
       if (!utils.isWrapped(sourceRoute, 'get')) {
         wrapRouteMethods(sourceRoute)
 

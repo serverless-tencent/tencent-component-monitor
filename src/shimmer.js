@@ -16,8 +16,7 @@ function _firstPartyInstrumentation(agent, fileName, nodule) {
 
 const shimmer = {
   /**
-   * Patch the module.load function so that we see modules loading and
-   * have an opportunity to patch them with instrumentation.
+   * 修改module.load方法，模块加载时可以动态载入补丁以便在某些特定方法中加入指标收集探针
    */
   patchModule: function patchModule(agent) {
     const Module = require('module')
@@ -74,7 +73,7 @@ const shimmer = {
   },
 
   bootstrapInstrumentation: function bootstrapInstrumentation(agent) {
-    // Register all the first-party instrumentations.
+    // 注册所有注入模块
     Object.keys(INSTRUMENTATIONS).forEach(function forEachInstrumentation(moduleName) {
       const instrInfo = INSTRUMENTATIONS[moduleName]
 
@@ -94,28 +93,6 @@ const shimmer = {
   registeredInstrumentations: Object.create(null),
 
   /**
-   * NOT FOR USE IN PRODUCTION CODE
-   *
-   * If an instrumented module has a dependency on another instrumented module,
-   * and multiple tests are being run in a single test suite with their own
-   * setup and teardown between tests, it's possible transitive dependencies
-   * will be unwrapped in the module cache in-place (which needs to happen to
-   * prevent stale closures from channeling instrumentation data to incorrect
-   * agents, but which means the transitive dependencies won't get re-wrapped
-   * the next time the parent module is required).
-   *
-   * Since this only applies in test code, it's not worth the drastic
-   * monkeypatching to Module necessary to walk the list of child modules and
-   * re-wrap them.
-   *
-   * Use this to re-apply any applicable instrumentation.
-   */
-  reinstrument: function reinstrument(modulePath) {
-    // eslint-disable-next-line
-    return _postLoad(require(modulePath), modulePath)
-  },
-
-  /**
    * Given a NodeJS module name, return the name/identifier of our
    * instrumentation.  These two things are usually, but not always,
    * the same.
@@ -126,13 +103,12 @@ const shimmer = {
 }
 
 /**
- * All instrumentation files must export the same interface: a single
- * initialization function that takes the agent and the module to be
- * instrumented.
+ * 执行模块的onRequire逻辑，实际执行探针的绑定
  */
 function instrument(agent, nodule, moduleName) {
   const instrumentation = shimmer.registeredInstrumentations[moduleName]
 
+  // 已经加载过，不重复加载
   if (nodule.hasOwnProperty('__instrumented')) {
     return nodule
   }
@@ -152,7 +128,7 @@ function instrument(agent, nodule, moduleName) {
 function _postLoad(agent, nodule, name, resolvedName) {
   const instrumentation = name
 
-  // Check if this is a known instrumentation and then run it.
+  // 判断是否已经注册探针，如果没有则返回原模块
   if (shimmer.registeredInstrumentations[instrumentation]) {
     return instrument(agent, nodule, instrumentation, resolvedName)
   }
