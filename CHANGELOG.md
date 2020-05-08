@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.0...v1.0.1) (2020-05-08)
+
+
+### Bug Fixes
+
+* 保证finalhandler时执行正常 ([47c33cf](https://github.com/serverless-tencent/tencent-component-monitor/commit/47c33cfed4865b74b173453ee088cb3a6265364e))
+
 # 1.0.0 (2020-05-06)
 
 
