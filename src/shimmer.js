@@ -3,12 +3,25 @@ const fs = require('fs')
 const utils = require('./utils')
 const INSTRUMENTATIONS = require('./instrumentations')()
 
-function _firstPartyInstrumentation(agent, fileName, nodule) {
+const { MODULE_TYPE } = require('./constants')
+
+const CORE_INSTRUMENTATION = {
+  http: {
+    type: MODULE_TYPE.TRANSACTION,
+    file: 'http.js'
+  },
+  https: {
+    type: MODULE_TYPE.TRANSACTION,
+    file: 'http.js'
+  }
+}
+
+function _firstPartyInstrumentation(agent, fileName, nodule, moduleName) {
   if (!fs.existsSync(fileName)) {
     return
   }
   try {
-    return require(fileName)(agent, nodule)
+    return require(fileName)(agent, nodule, moduleName)
   } catch (error) {
     agent.emit('responseFinish')
   }
@@ -73,6 +86,19 @@ const shimmer = {
   },
 
   bootstrapInstrumentation: function bootstrapInstrumentation(agent) {
+    // Instrument each of the core modules.
+    Object.keys(CORE_INSTRUMENTATION).forEach(function forEachCore(mojule) {
+      const core = CORE_INSTRUMENTATION[mojule]
+      const filePath = path.join(__dirname, 'instrumentation', 'core', core.file)
+      let uninstrumented = null
+
+      try {
+        uninstrumented = require(mojule)
+      } catch (err) {}
+
+      _firstPartyInstrumentation(agent, filePath, uninstrumented)
+    })
+
     // 注册所有注入模块
     Object.keys(INSTRUMENTATIONS).forEach(function forEachInstrumentation(moduleName) {
       const instrInfo = INSTRUMENTATIONS[moduleName]

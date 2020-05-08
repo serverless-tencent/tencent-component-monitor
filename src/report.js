@@ -1,6 +1,5 @@
 const { Capi } = require('@tencent-sdk/capi')
 const logger = require('./logger')
-const { REUQEST_START_KEY } = require('./constants')
 
 // 字符串转16进制
 function str2hex(str) {
@@ -14,7 +13,7 @@ function str2hex(str) {
   return arr.join('')
 }
 
-exports.reportHttp = async function(context, method, path, statusCode) {
+exports.reportHttp = async function(context, { latency, method, path, statusCode }) {
   try {
     context = JSON.parse(decodeURIComponent(context))
     // 自定级监控上报的指标名只支持【a-zA-Z0-9_-】，所以把path进行转义上报
@@ -55,7 +54,6 @@ exports.reportHttp = async function(context, method, path, statusCode) {
       host: 'monitor.tencentcloudapi.com'
     }
 
-    const latency = Date.now() - context[REUQEST_START_KEY]
     const keyPrefix = `${method}_${path}`
     const Metrics = [
       { MetricName: 'request', Value: 1 },

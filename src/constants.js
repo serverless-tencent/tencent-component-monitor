@@ -8,7 +8,8 @@
 const MODULE_TYPE = {
   /** Web server framework module, such as Express or Koa. */
   WEB_FRAMEWORK: 'web-framework',
-  PROXY: 'proxy'
+  PROXY: 'proxy',
+  TRANSACTION: 'transaction'
 }
 
 exports.MODULE_TYPE = MODULE_TYPE
