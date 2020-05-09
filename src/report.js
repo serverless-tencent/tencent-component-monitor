@@ -35,7 +35,7 @@ exports.reportHttp = async function(context, { latency, method, path, statusCode
     } = environment
     const Region = tencentcloud_region || envTencentRegion || envRegion || 'ap-guangzhou'
     if (!SecretId || !SecretKey) {
-      logger.warn('No SecretId or SecretKey in environment parameters.')
+      logger.warn('Report monitor data error: No SecretId or SecretKey in environment parameters.')
       return
     }
     const client = new Capi({

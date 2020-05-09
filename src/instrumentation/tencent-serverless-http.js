@@ -11,7 +11,12 @@ module.exports = function initialize(agent, httpProxy) {
         agent.once('responseFinish', function(ctx, data) {
           if (ctx) {
             report.reportHttp(ctx, data).then(
-              function() {
+              function(_data) {
+                const { Response } = _data || {}
+                const { Error: error } = Response || {}
+                if (error && error.Message) {
+                  console.warn('Report monitor data error: ' + error.Message)
+                }
                 resolve(proxy)
               },
               function() {
