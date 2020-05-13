@@ -15,7 +15,7 @@ function wrapEmitWithTransaction(agent, emit) {
         const statusCode = String(response.statusCode)
         const path = transaction.path || request.path
         if (/^\d+$/.test(statusCode)) {
-          const context = request.headers['x-apigateway-context']
+          const context = request.__SLS_CONTEXT__
           const latency = Date.now() - transaction.start
           const data = {
             latency,
