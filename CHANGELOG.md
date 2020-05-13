@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.2...v1.0.3) (2020-05-13)
+
+
+### Bug Fixes
+
+* 获取context方式修改 ([d9e4dc6](https://github.com/serverless-tencent/tencent-component-monitor/commit/d9e4dc6ddccc3c8b84c0ce0152efb4bf3799a236))
+
 ## [1.0.2](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.1...v1.0.2) (2020-05-09)
 
 
