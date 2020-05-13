@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.3...v1.0.4) (2020-05-13)
+
+
+### Bug Fixes
+
+* remove context decode ([286fe4b](https://github.com/serverless-tencent/tencent-component-monitor/commit/286fe4bb38e946cabeae61aa88cf40a4f05c0089))
+
 ## [1.0.3](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.2...v1.0.3) (2020-05-13)
 
 
