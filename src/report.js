@@ -1,5 +1,5 @@
 const { Capi } = require('@tencent-sdk/capi')
-const logger = require('./logger')
+// const logger = require('./logger')
 
 // 字符串转16进制
 function str2hex(str) {
@@ -34,7 +34,7 @@ exports.reportHttp = async function(context, { latency, method, path, statusCode
     } = environment
     const Region = tencentcloud_region || envTencentRegion || envRegion || 'ap-guangzhou'
     if (!SecretId || !SecretKey) {
-      logger.warn('Report monitor data error: No SecretId or SecretKey in environment parameters.')
+      // logger.warn('Report monitor data error: No SecretId or SecretKey in environment parameters.')
       return
     }
     const client = new Capi({
