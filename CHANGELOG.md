@@ -1,3 +1,10 @@
+## [1.0.5](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.4...v1.0.5) (2020-05-20)
+
+
+### Bug Fixes
+
+* remove monitor log ([62afa5b](https://github.com/serverless-tencent/tencent-component-monitor/commit/62afa5ba57e15af53382290d95b23ef32c30b68f))
+
 ## [1.0.4](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.3...v1.0.4) (2020-05-13)
 
 
