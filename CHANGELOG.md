@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.5...v1.0.6) (2020-05-25)
+
+
+### Bug Fixes
+
+* 上报增加100ms超时 ([a3f75dd](https://github.com/serverless-tencent/tencent-component-monitor/commit/a3f75dd05469e35204da38e3401b449539f685c0))
+
 ## [1.0.5](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.4...v1.0.5) (2020-05-20)
 
 
