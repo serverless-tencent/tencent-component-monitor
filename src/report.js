@@ -50,7 +50,8 @@ exports.reportHttp = async function(context, { latency, method, path, statusCode
     }
     const debugOptions = {
       debug: false,
-      host: 'monitor.tencentcloudapi.com'
+      host: 'monitor.tencentcloudapi.com',
+      timeout: 100
     }
 
     const keyPrefix = `${method}_${path}`
