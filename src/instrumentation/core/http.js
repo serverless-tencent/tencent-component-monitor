@@ -23,7 +23,7 @@ function wrapEmitWithTransaction(agent, emit) {
             method: request.method,
             statusCode
           }
-          agent.emit('responseFinish', context, data)
+          agent.emit('responseFinish', context, data, request.__SLS_NO_REPORT__)
         }
       }
       transaction.end()
