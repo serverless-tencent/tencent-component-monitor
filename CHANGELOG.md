@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.6...v1.1.0) (2020-05-28)
+
+
+### Features
+
+* support no report flag ([982b418](https://github.com/serverless-tencent/tencent-component-monitor/commit/982b4182e513255f0d093c53aaf3136e0576cdd7))
+
 ## [1.0.6](https://github.com/serverless-tencent/tencent-component-monitor/compare/v1.0.5...v1.0.6) (2020-05-25)
 
 

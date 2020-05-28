@@ -1,6 +1,6 @@
 {
   "name": "tencent-component-monitor",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "Tencent component monitor",
   "main": "src/index.js",
   "scripts": {
