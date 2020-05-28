@@ -8,8 +8,8 @@ module.exports = function initialize(agent, httpProxy) {
       transaction.init()
       const proxy = fn.apply(this, arguments)
       return new Promise(function(resolve) {
-        agent.once('responseFinish', function(ctx, data) {
-          if (ctx) {
+        agent.once('responseFinish', function(ctx, data, noReport) {
+          if (ctx && noReport !== true) {
             report.reportHttp(ctx, data).then(
               function(/* _data*/) {
                 // const { Response } = _data || {}
